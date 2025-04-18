@@ -1,5 +1,3 @@
-# multiplayer/vote_observer.py
-
 from .music_manager import Observer
 from typing import Any, Dict
 
