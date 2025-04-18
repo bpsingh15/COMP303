@@ -148,11 +148,11 @@ class SortByUserRatingCommand(MenuCommand):
 # ============================================================
 # MYHOUSE MAP
 # ============================================================
-class MyHouse(Map):
+class PaulHouse(Map):
     MAIN_ENTRANCE = True
     def __init__(self) -> None:
         super().__init__(
-            name="My House",
+            name="Paul House",
             description="Interact with the computer to select a song to play!",
             size=(15, 15),
             entry_point=Coord(14, 7),
@@ -160,7 +160,7 @@ class MyHouse(Map):
         )
 
     def player_entered(self, player: "HumanPlayer") -> list[Message]:
-        return [ServerMessage(player, "Welcome to your Music Lounge! Interact with the computer to play songs, sort playlists, and more.")]
+        return [ServerMessage(player, "Welcome to your Music Lounge! This is Paul's project that he did alone!")]
 
     def get_objects(self) -> list[tuple[MapObject, Coord]]:
         objects: list[tuple[MapObject, Coord]] = []

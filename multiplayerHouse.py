@@ -1,5 +1,9 @@
 from .myhouse import *
 from .pressurePlate import *
+from .multiplayer.music_manager import *
+from .multiplayer.vote_observer import *
+from .multiplayer.vote_command import *
+
 
 class MyHouse_Multiplayer(Map):
     def __init__(self) -> None:
@@ -13,14 +17,22 @@ class MyHouse_Multiplayer(Map):
 
     def get_objects(self) -> list[tuple[MapObject, Coord]]:
         objects: list[tuple[MapObject, Coord]] = []
-        objects.append((Door('int_entrance', linked_room="My House"), Coord(9, 5)))
+        objects.append((Door('int_entrance', linked_room="Paul House"), Coord(9, 5)))
 
         computer = CustomComputer(
             image_name="computer",
             menu_name="Select an option",
             menu_options={}
         )
-        main_menu_options: Dict[str, MenuCommand] = {}
+
+        # Register Observer once
+        manager = MusicManager.get_instance()
+        main_menu_options: dict[str, MenuCommand] = {
+            "Vote for Song": VoteForSongCommand(
+                csv_path=os.path.join("resources", "playlists", "$ome $exy $ongs 4 U.csv")
+            )
+        }
+
         computer.set_menu_options(main_menu_options)
         objects.append((computer, Coord(10, 7)))
         return objects
